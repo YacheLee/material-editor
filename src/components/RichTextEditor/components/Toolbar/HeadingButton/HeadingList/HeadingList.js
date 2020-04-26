@@ -24,7 +24,8 @@ const DropdownList = styled.div`
     height: 95%;
     text-decoration: none;
     display: block;
-    "&:hover,&.hover": {
+    
+    &:hover{
         cursor: pointer;
         background-color: ${GREY_COLOR};
     }
