@@ -9,6 +9,7 @@ import HeadingButton from './HeadingButton';
 import LinkButton from './LinkButton';
 import UndoButton from './UndoButton';
 import RedoButton from './RedoButton';
+import CentralFlexbox from '../../styles/CentralFlexbox';
 
 const Root = styled.div`
     position: sticky;
@@ -24,7 +25,7 @@ const Root = styled.div`
     padding: 0;
 `;
 
-const Division = styled.div`
+const Division = styled(CentralFlexbox)`
     margin: 12px;
     width: auto;
     display: flex;
