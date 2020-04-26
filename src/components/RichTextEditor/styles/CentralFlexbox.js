@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
-const CentralFlexbox = styled.div`
-    display: flex;
-    justify-content: center;
-    align-content: center;
-`;
+function CentralFlexbox(tag){
+    return styled(tag)`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    `;
+}
 
 CentralFlexbox.defaultProps = {
 };

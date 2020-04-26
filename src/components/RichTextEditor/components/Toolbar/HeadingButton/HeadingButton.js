@@ -1,30 +1,21 @@
 import React, {Fragment, useContext} from 'react';
-import {createUseStyles} from 'react-jss';
-import cn from 'classnames';
 import Popover from '@material-ui/core/Popover';
+import styled from 'styled-components';
 import {ArrowDropDown} from "@material-ui/icons";
 import HeadingList from "./HeadingList";
 import {BLACK_COLOR} from '../../../config';
 import {EditorViewContext} from '../../../contexts';
 import {changeHeading, getHeading} from '../../../utils';
 import types from './types';
+import CentralFlexbox from '../../../styles/CentralFlexbox';
 
-const useStyles = createUseStyles({
-    root: {
-        display: "flex",
-        alignContent: "center",
-        justifyContent: "center",
-        color: BLACK_COLOR,
-        "&:hover": {
-            cursor: "pointer"
-        }
-    },
-    center: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
-    },
-});
+const Root = styled(CentralFlexbox("div"))`
+  color: ${BLACK_COLOR};
+  &:hover{
+    cursor: pointer;
+`;
+
+const Center = CentralFlexbox("span");
 
 function HeadingButton(){
     const {editorView} = useContext(EditorViewContext);
@@ -33,16 +24,14 @@ function HeadingButton(){
     const id = open ? 'simple-popover' : undefined;
     const value = getHeading(editorView);
     const label = types[value];
-    const classes = useStyles();
-    const rootClassName = cn(classes.root);
 
     return <Fragment>
-        <div className={rootClassName} onClick={({currentTarget}) => {
+        <Root onClick={({currentTarget}) => {
             setAnchorEl(currentTarget);
         }}>
-            <span className={classes.center}>{label}</span>
-            <span className={classes.center}><ArrowDropDown /></span>
-        </div>
+            <Center>{label}</Center>
+            <Center><ArrowDropDown /></Center>
+        </Root>
         <Popover
             id={id}
             open={open}
@@ -59,7 +48,7 @@ function HeadingButton(){
                 horizontal: 'center',
             }}
         >
-            <div className={classes.popover}>
+            <div>
                 <HeadingList value={value} onClick={(level) => {
                     changeHeading(editorView, parseInt(level));
                     setAnchorEl(null);

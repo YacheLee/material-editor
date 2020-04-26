@@ -25,12 +25,9 @@ const Root = styled.div`
     padding: 0;
 `;
 
-const Division = styled(CentralFlexbox)`
+const Division = styled(CentralFlexbox('div'))`
     margin: 12px;
     width: auto;
-    display: flex;
-    justify-content: center;
-    align-content: center;
     
     &:hover{
         cursor: pointer;
