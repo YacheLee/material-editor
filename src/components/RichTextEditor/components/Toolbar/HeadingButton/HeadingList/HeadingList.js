@@ -1,51 +1,46 @@
 import _ from "lodash";
 import React from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
-import {createUseStyles} from 'react-jss';
 import {GREY_COLOR} from "../../../../config";
 import types, {HEADING_DEFAULT_TYPE} from '../types';
 
 const FONT_SIZE = 20;
 
-const useStyles = createUseStyles({
-    dropdownContent: {
-        paddingTop: "5px",
-        paddingLeft: "5px",
-        paddingRight: "5px",
-        backgroundColor:"#f9f9f9",
-        minWidth:"100px",
-        minHeight:"200px",
-        boxShadow:"0px 8px 16px 0px rgba(0,0,0,0.2)",
-        zIndex:9999999
-    },
-    dropdownList: {
-        color:"black",
-        padding:"8px 10px",
-        height:"95%",
-        textDecoration:"none",
-        display:"block",
-        "&:hover,&.hover": {
-            cursor: "pointer",
-            backgroundColor: GREY_COLOR
-        }
+const Root = styled.div`
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    min-height: 200px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 9999999
+`;
+
+const DropdownList = styled.div`
+    color: black;
+    padding: 8px 10px;
+    height: 95%;
+    text-decoration: none;
+    display: block;
+    "&:hover,&.hover": {
+        cursor: pointer;
+        background-color: ${GREY_COLOR};
     }
-});
+`;
 
 function Head({fontSize, hover, onClick, label}) {
-    const classes = useStyles();
-
-    return <div
-        className={`${cn(classes.dropdownList, {hover})}`}
-        style={{fontSize}} onClick={onClick}>
+    return <DropdownList
+        hover={hover}
+        style={{fontSize}}
+        onClick={onClick}>
         {label}
-    </div>
+    </DropdownList>
 }
 
 const HeadingList = ({onClick, value}) => {
-    const classes = useStyles();
-
-    return <div className={classes.dropdownContent}>
+    return <Root>
         {_.keys(types).map((level, index)=>{
             const label = types[level];
             const hover = level === value;
@@ -59,7 +54,7 @@ const HeadingList = ({onClick, value}) => {
                 onClick={()=> onClick(level) }
             />
         })}
-    </div>
+    </Root>
 };
 
 HeadingList.defaultProps = {
