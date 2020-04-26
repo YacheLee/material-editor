@@ -1,7 +1,7 @@
 import React, {Fragment, useContext} from 'react';
 import Popover from '@material-ui/core/Popover';
 import styled from 'styled-components';
-import {ArrowDropDown} from "@material-ui/icons";
+import {MdArrowDropDown} from "react-icons/md";
 import HeadingList from "./HeadingList";
 import {BLACK_COLOR} from '../../../config';
 import {EditorViewContext} from '../../../contexts';
@@ -30,7 +30,7 @@ function HeadingButton(){
             setAnchorEl(currentTarget);
         }}>
             <Center>{label}</Center>
-            <Center><ArrowDropDown /></Center>
+            <Center><MdArrowDropDown /></Center>
         </Root>
         <Popover
             id={id}

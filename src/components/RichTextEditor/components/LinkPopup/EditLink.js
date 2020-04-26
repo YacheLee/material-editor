@@ -2,9 +2,9 @@ import React from 'react';
 
 const FONT_SIZE = 18;
 
-const EditLink = ({className, onClick}) => {
+const EditLink = ({onClick, ...props}) => {
     return(
-        <div className={className} style={{fontSize: FONT_SIZE}} onClick={onClick}>Edit Link</div>
+        <div style={{fontSize: FONT_SIZE}} onClick={onClick}>Edit Link</div>
     );
 };
 

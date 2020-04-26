@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {BLACK_COLOR, BORDER_RADIUS, GREY_COLOR} from "../../../config";
+import {BLACK_COLOR, BORDER_RADIUS, DEFAULT_ICON_FONT_SIZE, GREY_COLOR} from "../../../config";
 
 const Wrapper = styled.div`
   display: flex;
@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   border-radius: ${BORDER_RADIUS}px;
   background-color: ${props=> props.isActive ? BLACK_COLOR : "white"};
   color: ${props=> props.isActive ? "white": BLACK_COLOR};
-  font-size: 24px;
+  font-size: ${DEFAULT_ICON_FONT_SIZE};
   
   &:hover{
     cursor: pointer;

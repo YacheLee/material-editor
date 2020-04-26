@@ -1,12 +1,12 @@
 import React from 'react';
-import Icon from "@material-ui/core/Icon";
+import {FaUnlink} from 'react-icons/fa';
 
 const FONT_SIZE = 18;
 
-const Unlink = ({className, onClick}) => {
+const Unlink = ({onClick}) => {
     return (
-        <div className={className} onClick={onClick}>
-            <Icon className="fas fa-unlink" style={{fontSize: FONT_SIZE}} />
+        <div onClick={onClick}>
+            <FaUnlink style={{fontSize: FONT_SIZE}} />
         </div>
     );
 };

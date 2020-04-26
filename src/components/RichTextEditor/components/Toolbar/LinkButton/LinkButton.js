@@ -1,13 +1,14 @@
 import React, {useContext} from "react";
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {InsertLink as Link} from '@material-ui/icons';
-import {BLACK_COLOR} from "../../../config";
+import {MdInsertLink as Link} from 'react-icons/md';
+import {BLACK_COLOR, DEFAULT_ICON_FONT_SIZE} from "../../../config";
 import {EditorViewContext} from '../../../contexts';
 import {canLinkBeCreatedInRange, getActiveText, insertLink} from '../../../utils';
 import CentralFlexbox from '../../../styles/CentralFlexbox';
 
 const Root = styled(CentralFlexbox("div"))`
+  font-size: ${DEFAULT_ICON_FONT_SIZE};
   color: ${props => props.disabled ? "grey" : BLACK_COLOR};
   
   &:hover{
