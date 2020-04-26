@@ -1,5 +1,5 @@
 import React from 'react';
-import {createUseStyles} from 'react-jss';
+import styled from 'styled-components';
 import BoldButton from './BoldButton';
 import ItalicButton from './ItalicButton';
 import UnderlineButton from './UnderlineButton';
@@ -10,65 +10,63 @@ import LinkButton from './LinkButton';
 import UndoButton from './UndoButton';
 import RedoButton from './RedoButton';
 
-const useStyles = createUseStyles({
-    root: {
-        position: "sticky",
-        top: 0,
-        backgroundColor: "white",
-        zIndex: 1,
-        width: '100%',
-        flexWrap: "nowrap",
-        overflowX: "auto",
-        display: "flex",
-        flex: '0 0 auto',
-        flexShrink: 0,
-        padding: 0,
-    },
-    division: {
-        margin: 12,
-        width: 'auto',
-        display: "flex",
-        justifyContent: "center",
-        alignContent: "center",
-        "&:hover": {
-            cursor: "pointer"
-        }
+const Root = styled.div`
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    display: flex;
+    flex: 0 0 auto;
+    flex-shrink: 0;
+    padding: 0;
+`;
+
+const Division = styled.div`
+    margin: 12px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    
+    &:hover{
+        cursor: pointer;
     }
-});
+`;
 
 function Toolbar() {
-    const classes = useStyles();
-
     return (
-        <div className={classes.root} onMouseDown={e=>e.preventDefault()}>
-            <div className={classes.division}>
+        <Root onMouseDown={e=>e.preventDefault()}>
+            <Division>
                 <UndoButton />
-            </div>
-            <div className={classes.division}>
+            </Division>
+            <Division>
                 <RedoButton />
-            </div>
-            <div className={classes.division}>
+            </Division>
+            <Division>
                 <HeadingButton />
-            </div>
-            <div className={classes.division}>
+            </Division>
+            <Division>
                 <BoldButton />
-            </div>
-            <div className={classes.division}>
+            </Division>
+            <Division>
                 <ItalicButton />
-            </div>
-            <div className={classes.division}>
+            </Division>
+            <Division>
                 <UnderlineButton />
-            </div>
-            <div className={classes.division}>
+            </Division>
+            <Division>
                 <DelButton />
-            </div>
-            <div className={classes.division}>
+            </Division>
+            <Division>
                 <TextColorButton />
-            </div>
-            <div className={classes.division}>
+            </Division>
+            <Division>
                 <LinkButton />
-            </div>
-        </div>
+            </Division>
+        </Root>
     );
 }
 
