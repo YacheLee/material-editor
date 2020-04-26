@@ -1,17 +1,41 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App';
-import * as serviceWorker from './serviceWorker';
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider';
+import EditorViewContext from './contexts/EditorViewContext';
+import Editor from './components/Editor';
+import Toolbar from './components/Toolbar';
+import normaliseValue from './normaliseValue';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const PaperWrapper = styled(Paper)`
+  padding: 12px;
+`;
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+export function RichTextEditor({ defaultValue, onChange }) {
+  const [editorView, setEditorView] = useState(null);
+
+  return (
+    <EditorViewContext.Provider value={{ editorView, setEditorView }}>
+      <PaperWrapper elevation={3}>
+        {editorView && <Toolbar />}
+        <Divider light />
+        <div style={{ margin: 12, overflow: 'auto' }}>
+          <Editor value={normaliseValue(defaultValue)} onChange={onChange} />
+        </div>
+      </PaperWrapper>
+    </EditorViewContext.Provider>
+  );
+}
+
+RichTextEditor.defaultProps = {
+  defaultValue: [],
+  onChange: () => {}
+};
+
+RichTextEditor.propTypes = {
+  defaultValue: PropTypes.array,
+  onChange: PropTypes.func
+};
+
+export default RichTextEditor;
