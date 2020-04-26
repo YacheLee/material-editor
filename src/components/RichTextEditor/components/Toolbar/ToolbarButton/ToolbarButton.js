@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   border-radius: ${BORDER_RADIUS}px;
   background-color: ${props=> props.isActive ? BLACK_COLOR : "white"};
   color: ${props=> props.isActive ? "white": BLACK_COLOR};
+  font-size: 24px;
   
   &:hover{
     cursor: pointer;
@@ -18,8 +19,8 @@ const Wrapper = styled.div`
   }
 `;
 
-function ToolbarButton({onClick, ...props}){
-    return <Wrapper>
+function ToolbarButton({onClick, isActive, ...props}){
+    return <Wrapper isActive={isActive}>
         <props.component onClick={onClick} />
     </Wrapper>
 }
