@@ -1,65 +1,56 @@
 import React from "react";
-import {createUseStyles} from "react-jss";
-import EditLink from "./EditLink";
+import styled from "styled-components";
 import ExternalLink from "./ExternalLink";
 import Unlink from "./Unlink";
-import {BLACK_COLOR, BORDER_RADIUS, GREY_COLOR} from "../../config";
-// import {editLink, unwrapLink} from "../../link";
+import {GREY_COLOR} from "../../config";
+import ButtonStyle from './ButtonStyle';
+import EditLink from './EditLink';
 
-const useStyles = createUseStyles({
-    root: {
-        overflowY: "hidden",
-        display: "inline-flex",
-        height: 30,
-        width: 180,
-        boxShadow:"0px 8px 16px 0px rgba(0,0,0,0.2)",
-        padding: "4px 8px",
-        zIndex: 10,
-
-        "&:hover":{
-           cursor: "pointer"
-        }
-    },
-    a: {
-        color: "#0052cc",
-        textDecoration: "none",
-        "&:hover": {
-            textDecoration: "underline",
-            color: "#3b73af"
-        }
-    },
-    separator: {
-        display: "flex",
-        background: GREY_COLOR,
-        width: "1px",
-        height: "28px",
-        margin: "0px 8px"
-    },
-    editElement: {
-        display: "flex",
-        flex: "1 0 auto",
-        padding: "0px 2px",
-        justifyContent: "center",
-        alignItems: "center",
-        color: BLACK_COLOR,
-        borderRadius: BORDER_RADIUS,
-        "&:hover": {
-            cursor: "pointer",
-            backgroundColor: GREY_COLOR
+const Root = styled.div`
+  overflow-y: hidden;
+  display: inline-flex;
+    height: 30px;
+    width: 180px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    padding: 4px 8px;
+    z-index: 10;
+        
+    &:hover{
+      cursor: pointer;
+    }
+    
+    a{
+        color: #0052cc;
+        text-decoration: none;
+        &:hover{
+            text-decoration: underline;
+            color: #3b73af;
         }
     }
-});
+`;
+
+const Separator = styled.div`
+     display: flex;
+     background: ${GREY_COLOR};
+     width: 1px;
+     height: 28px;
+     margin: 0 8px;
+`;
 
 function LinkPopup({url, onEditLinkClick, onUnlinkClick}){
-    const classes = useStyles();
-
-    return <div className={classes.root}>
-        <EditLink className={classes.editElement} onClick={onEditLinkClick}/>
-        <div className={classes.separator}/>
-        <ExternalLink className={classes.editElement} url={url} />
-        <div className={classes.separator}/>
-        <Unlink className={classes.editElement} onClick={onUnlinkClick} />
-    </div>
+    return <Root>
+        <ButtonStyle>
+            <EditLink onClick={onEditLinkClick} />
+        </ButtonStyle>
+        <Separator />
+        <ButtonStyle>
+            <ExternalLink url={url} />
+        </ButtonStyle>
+        <Separator />
+        <ButtonStyle>
+            <Unlink onClick={onUnlinkClick} />
+        </ButtonStyle>
+    </Root>
 }
 
 export default LinkPopup;
