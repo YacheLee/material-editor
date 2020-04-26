@@ -1,38 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {createUseStyles} from 'react-jss';
+import styled from 'styled-components';
 import {BLACK_COLOR, BORDER_RADIUS, GREY_COLOR} from "../../../config";
 
-const useStyles = createUseStyles({
-    root: {
-        display: "flex",
-        borderRadius: BORDER_RADIUS,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: ({isActive=false})=>{
-            return isActive ? BLACK_COLOR : "white";
-        },
-        color: ({isActive})=>{
-            return !isActive ? BLACK_COLOR : "white";
-        },
-        "&:hover": {
-            cursor: "pointer",
-            backgroundColor: ({isActive=false})=>{
-                return isActive ? BLACK_COLOR : GREY_COLOR;
-            },
-            color: ({isActive})=>{
-                return isActive ? "white" : BLACK_COLOR;
-            }
-        }
-    }
-});
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: ${BORDER_RADIUS}px;
+  background-color: ${props=> props.isActive ? BLACK_COLOR : "white"};
+  color: ${props=> props.isActive ? "white": BLACK_COLOR};
+  
+  &:hover{
+    cursor: pointer;
+    background-color: ${props=> props.isActive ? BLACK_COLOR : GREY_COLOR};
+    color: ${props=> props.isActive ? "white" : BLACK_COLOR};
+  }
+`;
 
 function ToolbarButton({onClick, ...props}){
-    const classes = useStyles(props);
-
-    return <div className={classes.root}>
+    return <Wrapper>
         <props.component onClick={onClick} />
-    </div>
+    </Wrapper>
 }
 
 ToolbarButton.defaultProps = {
