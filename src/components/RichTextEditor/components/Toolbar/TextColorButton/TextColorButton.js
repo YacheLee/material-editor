@@ -1,24 +1,19 @@
 import React, {Fragment, useContext} from 'react';
 import {CompactPicker} from 'react-color';
-import {createUseStyles} from 'react-jss';
+import styled from 'styled-components';
 import Popover from '@material-ui/core/Popover';
 import AButton from './AButton';
 import {EditorViewContext} from '../../../contexts';
 import {changeColor, getColor} from '../../../utils';
+import CentralFlexbox from '../../../styles/CentralFlexbox';
 
-const useStyles = createUseStyles({
-    root: {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        "&:hover": {
-            cursor: "pointer"
-        }
-    },
-});
+const Root = styled(CentralFlexbox('div'))`
+    &:hover{
+      cursor: pointer;
+    }
+`;
 
 function TextColorButton() {
-    const classes = useStyles();
     const {editorView} = useContext(EditorViewContext);
     const color = getColor(editorView);
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -26,11 +21,11 @@ function TextColorButton() {
     const id = open ? 'simple-popover' : undefined;
 
     return <Fragment>
-        <div className={classes.root}>
+        <Root>
             <AButton color={color} onClick={({currentTarget}) => {
                 setAnchorEl(currentTarget);
             }}/>
-        </div>
+        </Root>
         <Popover
             id={id}
             open={open}
